@@ -1,0 +1,29 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# ggwaterfall
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+ggwaterfall provides tools to make waterfall charts based on ggplot2
+
+
+
+```{r example}
+library(ggwaterfall)
+## basic example code
+```
+
