@@ -22,6 +22,7 @@ seq_along_named <- function(x){
 #' @param base_var name of the variable for totals
 #' @param by_var name of the variable for facetting (optional)
 #' @param value_var name of the variable with numeric values
+#' @param drop_first drop observations for first base value (where differenced values are missing)
 #' @param base_prefix prefix to be added to totals
 #' @param ordering character vector with unique items (base_var) for manual ordering
 #'
@@ -33,6 +34,7 @@ waterfall <- function(
   base_var   = NULL,
   by_var     = NULL,
   value_var  = NULL,
+  drop_first = TRUE,
   base_prefix = "",
   ordering = NULL
 ) {
@@ -102,6 +104,9 @@ waterfall <- function(
                aggr[, c(base_var, by_var, "ord", "start", "end", "value_diff", detail_var, "is_aggr"), with = FALSE]),
       use.names = TRUE,
       fill = TRUE)
+
+  if (isTRUE(drop_first))
+    DT_OUT <- DT_OUT[(get(base_var) != min(get(base_var))) | is_aggr == TRUE]
 
   setkeyv(DT_OUT, c(base_var, "ord"))
   DT_OUT[

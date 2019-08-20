@@ -5,7 +5,8 @@
 \title{Compute waterfall data}
 \usage{
 waterfall(data, detail_var = NULL, base_var = NULL, by_var = NULL,
-  value_var = NULL, base_prefix = "", ordering = NULL)
+  value_var = NULL, drop_first = TRUE, base_prefix = "",
+  ordering = NULL)
 }
 \arguments{
 \item{data}{a data.frame object}
@@ -17,6 +18,8 @@ waterfall(data, detail_var = NULL, base_var = NULL, by_var = NULL,
 \item{by_var}{name of the variable for facetting (optional)}
 
 \item{value_var}{name of the variable with numeric values}
+
+\item{drop_first}{drop observations for first base value (where differenced values are missing)}
 
 \item{base_prefix}{prefix to be added to totals}
 

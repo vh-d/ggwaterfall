@@ -55,9 +55,7 @@ waterfall(
   base_var   = "time",
   value_var  = "value"
 ) %>%
-  plot(
-    select = (time > 1 | is_aggr), # filter out base period
-  )
+  plot()
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
@@ -108,9 +106,7 @@ waterfall(
   base_var   = "time",
   value_var  = "value"
 ) %>%
-  plot(
-    select = (time > 1 | is_aggr), # filter out base period
-  )
+  plot()
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
@@ -126,9 +122,7 @@ waterfall_data(
   by_var     = "group",
   value_var  = "value"
 ) %>%
-  waterfall_plot(
-    select = (time > 1 | is_aggr)
-  )
+  waterfall_plot()
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
@@ -167,7 +161,6 @@ DTwf <-
 
 DTwf %>% 
   waterfall_plot(
-    select = (time > 1 | is_aggr),
     flip = TRUE,
   ) + 
   ggtitle("Add this title here")
