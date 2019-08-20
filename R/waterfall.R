@@ -41,11 +41,25 @@ waterfall <- function(
 
   # expand grid
   setkeyv(DT, c(by_var, base_var, detail_var))
-  DT <- DT[CJ(get(by_var), get(base_var), get(detail_var), unique = TRUE)]
+  DT <-
+    DT[
+      if (length(by_var)) {
+        CJ(
+          get(by_var),
+          get(base_var),
+          get(detail_var),
+          unique = TRUE)
+      } else {
+        CJ(
+          get(base_var),
+          get(detail_var),
+          unique = TRUE)
+      }
+      ]
   DT[is.na(get(value_var)), c(value_var) := 0]
 
   # compute differences
-  setkeyv(DT, c(by_var, detail_var, base_var))
+  # setkeyv(DT, c(by_var, detail_var, base_var))
   DT[, value_diff := VHtools::diff_fill(get(value_var)), by = c(by_var, detail_var)]
 
   if (is.null(ordering)) {
@@ -66,7 +80,7 @@ waterfall <- function(
   aggr <- DT[, .(value_aggr = sum(get(value_var))), by = c(by_var, base_var)]
 
   setkeyv(DT, c(base_var, by_var))
-  DT[aggr[, .(shift_on_ord(get(base_var), type = "lead"), get(by_var), value_aggr)], value_aggr := value_aggr]
+  DT[aggr[, .(shift_on_ord(get(base_var), type = "lead"), if (length(by_var)) get(by_var), value_aggr)], value_aggr := value_aggr]
 
   # shift waterfall values by base values
   DT[, start := start + value_aggr]
