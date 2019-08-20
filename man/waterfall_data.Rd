@@ -8,9 +8,19 @@ waterfall(data, detail_var = NULL, base_var = NULL, by_var = NULL,
   value_var = NULL, base_prefix = "", ordering = NULL)
 }
 \arguments{
-\item{data}{}
+\item{data}{a data.frame object}
 
-\item{ordering}{}
+\item{detail_var}{name of the variable for item dimension}
+
+\item{base_var}{name of the variable for totals}
+
+\item{by_var}{name of the variable for facetting (optional)}
+
+\item{value_var}{name of the variable with numeric values}
+
+\item{base_prefix}{prefix to be added to totals}
+
+\item{ordering}{character vector with unique items (base_var) for manual ordering}
 }
 \description{
 Compute waterfall data

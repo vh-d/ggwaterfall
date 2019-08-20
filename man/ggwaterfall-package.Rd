@@ -6,7 +6,7 @@
 \alias{ggwaterfall-package}
 \title{R package for creating waterfall chars with ggplot2}
 \description{
-What the package does (one paragraph).
+Tools for generating advanced waterfall charts with ggplot2 package.
 }
 \author{
 \strong{Maintainer}: Václav Hausenblas \email{vaclav.hausenblas@gmail.com}

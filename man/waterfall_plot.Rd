@@ -10,9 +10,25 @@
   ncol = NULL, label_font_size = 3, color_palette = NULL)
 }
 \arguments{
-\item{wf_data}{}
+\item{wf_data}{a data from waterfall() / waterfall_data()}
 
-\item{color_palette}{}
+\item{select}{apply a filter}
+
+\item{scales}{passed to ggplot2}
+
+\item{flip}{flip chart to horizontal bars?}
+
+\item{xlim}{passed to ggplot2}
+
+\item{ylim}{passed to ggplot2}
+
+\item{nrow}{passed to ggplot2}
+
+\item{ncol}{passed to ggplot2}
+
+\item{label_font_size}{passed to ggplot2}
+
+\item{color_palette}{(optional) manual color_palette}
 }
 \description{
 Plot waterfall data

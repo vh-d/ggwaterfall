@@ -16,14 +16,14 @@ seq_along_named <- function(x){
 
 
 #' Compute waterfall data
-#' @param data
+#' @param data a data.frame object
 #'
-#' @param detail_var
-#' @param base_var
-#' @param by_var
-#' @param value_var
-#' @param base_prefix
-#' @param ordering
+#' @param detail_var name of the variable for item dimension
+#' @param base_var name of the variable for totals
+#' @param by_var name of the variable for facetting (optional)
+#' @param value_var name of the variable with numeric values
+#' @param base_prefix prefix to be added to totals
+#' @param ordering character vector with unique items (base_var) for manual ordering
 #'
 #' @rdname waterfall_data
 #' @export
@@ -128,17 +128,17 @@ waterfall_data <- waterfall
 
 
 #' Plot waterfall data
-#' @param wf_data
+#' @param wf_data a data from waterfall() / waterfall_data()
 #'
-#' @param select
-#' @param scales
-#' @param flip
-#' @param xlim
-#' @param ylim
-#' @param nrow
-#' @param ncol
-#' @param label_font_size
-#' @param color_palette
+#' @param select apply a filter
+#' @param scales passed to ggplot2
+#' @param flip flip chart to horizontal bars?
+#' @param xlim passed to ggplot2
+#' @param ylim passed to ggplot2
+#' @param nrow passed to ggplot2
+#' @param ncol passed to ggplot2
+#' @param label_font_size passed to ggplot2
+#' @param color_palette (optional) manual color_palette
 #'
 #' @rdname waterfall_plot
 #' @export
