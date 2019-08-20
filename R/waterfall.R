@@ -25,6 +25,7 @@ seq_along_named <- function(x){
 #' @param base_prefix
 #' @param ordering
 #'
+#' @rdname waterfall_data
 #' @export
 waterfall <- function(
   data,
@@ -121,6 +122,9 @@ waterfall <- function(
 }
 
 
+#' @export
+waterfall_data <- waterfall
+
 
 
 #' Plot waterfall data
@@ -135,6 +139,8 @@ waterfall <- function(
 #' @param ncol
 #' @param label_font_size
 #' @param color_palette
+#'
+#' @rdname waterfall_plot
 #' @export
 plot.waterfall <- function(
   wf_data,
@@ -229,6 +235,10 @@ plot.waterfall <- function(
 
   return(g)
 }
+
+#' @export
+waterfall_plot <- plot.waterfall
+
 
 
 #' @export

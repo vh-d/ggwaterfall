@@ -3,5 +3,7 @@
 S3method(plot,waterfall)
 export(waterfall)
 export(waterfall_colors)
+export(waterfall_data)
+export(waterfall_plot)
 import(data.table)
 import(ggplot2)

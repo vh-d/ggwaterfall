@@ -10,6 +10,8 @@
 }
 \arguments{
 \item{wf_data}{}
+
+\item{color_palette}{}
 }
 \description{
 Plot waterfall data
