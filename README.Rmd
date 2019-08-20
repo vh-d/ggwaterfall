@@ -22,8 +22,143 @@ ggwaterfall provides tools to make waterfall charts based on ggplot2
 
 
 
-```{r example}
+## Example
+
+
+Generate some random data. 
+
+```{r example - simulate data}
 library(ggwaterfall)
-## basic example code
+library(data.table)
+library(magrittr)
+library(ggplot2)
+
+# simulate data
+set.seed(1L)
+
+nitems <- 5
+ntime <- 2
+
+DT <-
+  data.table(
+    group = rep(c("Group 1", "Group 2"), each = nitems),
+    item  = paste0("item ", rep(letters[1:nitems], each = ntime)),
+    time  = rep(1:ntime, times = nitems),
+    value = 6 + rnorm(nitems * ntime)
+  )
+
+DT
+```
+
+
+```{r}
+
+waterfall(
+  data       = DT,
+  detail_var = "item",
+  base_var   = "time",
+  value_var  = "value"
+) %>%
+  plot(
+    select = (time > 1 | is_aggr), # filter out base period
+  )
+```
+
+
+Plot a more advanced waterfall charts with multiple periods.
+
+```{r}
+# simulate new data
+set.seed(1L)
+
+nitems <- 4
+ntime <- 3
+
+DT <-
+  data.table(
+    group = rep(c("Group 1", "Group 2"), each = nitems),
+    item  = paste0("item ", rep(letters[1:nitems], each = ntime)),
+    time  = rep(1:ntime, times = nitems),
+    value = 6 + rnorm(nitems * ntime)
+  )
+
+DT
+```
+
+
+Plot a simple waterfall chart.
+
+```{r}
+
+waterfall(
+  data       = DT,
+  detail_var = "item",
+  base_var   = "time",
+  value_var  = "value"
+) %>%
+  plot(
+    select = (time > 1 | is_aggr), # filter out base period
+  )
+```
+
+
+You can make use of facetting with `by_var` arguments:
+
+```{r}
+
+waterfall_data(
+  data       = DT,
+  detail_var = "item",
+  base_var   = "time",
+  by_var     = "group",
+  value_var  = "value"
+) %>%
+  waterfall_plot(
+    select = (time > 1 | is_aggr)
+  )
+```
+
+
+
+Or flip the chart with flip = TRUE:
+
+```{r}
+
+waterfall_data(
+  data       = DT,
+  detail_var = "item",
+  base_var   = "time",
+  by_var     = "group",
+  value_var  = "value"
+) %>%
+  waterfall_plot(
+    select = (time > 1 | is_aggr),
+    flip = TRUE,
+  )
+```
+
+
+Use can still adapt the chart with comomn ggplot2 API:
+
+```{r}
+
+DTwf <- 
+  waterfall_data(
+    data       = DT,
+    detail_var = "item",
+    base_var   = "time",
+    by_var     = "group",
+    value_var  = "value"
+  )
+
+DTwf %>% 
+  waterfall_plot(
+    select = (time > 1 | is_aggr),
+    flip = TRUE,
+  ) + 
+  ggtitle("Add this title here")
+```
+
+
 ```
 
