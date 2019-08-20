@@ -5,7 +5,8 @@
 \title{Plot waterfall data}
 \usage{
 \method{plot}{waterfall}(wf_data, select = TRUE, scales = "fixed",
-  flip = FALSE, xlim = NULL, ylim = NULL, nrow = NULL,
+  flip = FALSE, xlim = NULL, ylim = c(min(wf_data$start, na.rm =
+  TRUE), max(wf_data$end, na.rm = TRUE) * 1.1), nrow = NULL,
   ncol = NULL, label_font_size = 3, color_palette = NULL)
 }
 \arguments{

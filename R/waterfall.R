@@ -150,7 +150,7 @@ plot.waterfall <- function(
   flip = FALSE,
   # units = 1,
   xlim = NULL,
-  ylim = NULL,
+  ylim = c(min(wf_data$start, na.rm = TRUE), max(wf_data$end, na.rm = TRUE)*1.1),
   nrow = NULL,
   ncol = NULL,
   label_font_size = 3,
@@ -200,9 +200,9 @@ plot.waterfall <- function(
     theme(panel.grid.major = element_blank())
 
   g <- g +
-    if (!is.null(color_palette))
+    if (length(color_palette))
       scale_fill_manual(guide = "none", values = color_palette) else
-        scale_fill_manual(guide = "none")
+        scale_fill_manual(guide = "none", values = waterfall_colors)
 
   # use faceting if there is more than 1 dimension
   if (!is.null(by_var) & length(by_var) >= 1)
