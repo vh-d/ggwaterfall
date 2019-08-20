@@ -15,6 +15,7 @@ seq_along_named <- function(x){
 }
 
 
+#' Compute waterfall data
 #' @param data
 #'
 #' @param detail_var
@@ -25,7 +26,7 @@ seq_along_named <- function(x){
 #' @param ordering
 #'
 #' @export
-waterfall_data <- function(
+waterfall <- function(
   data,
   detail_var = NULL,
   base_var   = NULL,
@@ -100,10 +101,15 @@ waterfall_data <- function(
   setattr(DT_OUT, "detail_var",  detail_var)
   setattr(DT_OUT, "base_var", base_var)
 
+  class(DT_OUT) <- c("waterfall", class(DT_OUT))
+
   return(DT_OUT)
 }
 
 
+
+
+#' Plot waterfall data
 #' @param wf_data
 #'
 #' @param select
@@ -115,9 +121,8 @@ waterfall_data <- function(
 #' @param ncol
 #' @param label_font_size
 #' @param color_palette
-#'
 #' @export
-waterfall_plot <- function(
+plot.waterfall <- function(
   wf_data,
   select = TRUE,
   # scales = if (flip) "free_x" else "free_y",
