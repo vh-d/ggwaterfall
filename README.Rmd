@@ -102,14 +102,14 @@ You can make use of facetting with `by_var` arguments:
 
 ```{r}
 
-waterfall_data(
+waterfall(
   data       = DT,
   detail_var = "item",
   base_var   = "time",
   by_var     = "group",
   value_var  = "value"
 ) %>%
-  waterfall_plot()
+  plot()
 ```
 
 
@@ -118,14 +118,14 @@ Or flip the chart with flip = TRUE:
 
 ```{r}
 
-waterfall_data(
+waterfall(
   data       = DT,
   detail_var = "item",
   base_var   = "time",
   by_var     = "group",
   value_var  = "value"
 ) %>%
-  waterfall_plot(
+  plot(
     select = (time > 1 | is_aggr),
     flip = TRUE,
   )
@@ -137,7 +137,7 @@ Use can still adapt the chart with comomn ggplot2 API:
 ```{r}
 
 DTwf <- 
-  waterfall_data(
+  waterfall(
     data       = DT,
     detail_var = "item",
     base_var   = "time",
@@ -146,7 +146,7 @@ DTwf <-
   )
 
 DTwf %>% 
-  waterfall_plot(
+  plot(
     flip = TRUE,
   ) + 
   ggtitle("Add this title here")
