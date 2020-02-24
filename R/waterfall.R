@@ -26,10 +26,36 @@ seq_along_named <- function(x){
 #' @param base_prefix prefix to be added to totals
 #' @param ordering character vector with unique items (base_var) for manual ordering
 #'
+#' @usage
+#' waterfall(
+#'   data,
+#'   detail_var = NULL,
+#'   base_var   = NULL,
+#'   by_var     = NULL,
+#'   value_var  = NULL,
+#'   drop_first = TRUE,
+#'   base_prefix = "",
+#'   ordering = NULL
+#' )
 #' @rdname waterfall_data
 #' @export
-waterfall <- function(
-  data,
+waterfall <- function(data, ...) {
+  UseMethod("waterfall", data)
+}
+
+#' @export
+waterfall.data.table <- function(data, ...) {
+  data <- copy(data)
+  create_waterfall(data, ...)
+}
+
+#' @export
+waterfall.data.frame <- function(data, ...) {
+  create_waterfall(as.data.table(data), ...)
+}
+
+create_waterfall <- function(
+  DT,
   detail_var = NULL,
   base_var   = NULL,
   by_var     = NULL,
@@ -39,11 +65,9 @@ waterfall <- function(
   ordering = NULL
 ) {
 
-  # aggregate
-  DT <- copy(data)
-
   # expand grid
   setkeyv(DT, c(by_var, base_var, detail_var))
+
   DT <-
     DT[
       if (length(by_var)) {

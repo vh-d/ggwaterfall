@@ -4,9 +4,16 @@
 \alias{waterfall}
 \title{Compute waterfall data}
 \usage{
-waterfall(data, detail_var = NULL, base_var = NULL, by_var = NULL,
-  value_var = NULL, drop_first = TRUE, base_prefix = "",
-  ordering = NULL)
+waterfall(
+  data,
+  detail_var = NULL,
+  base_var   = NULL,
+  by_var     = NULL,
+  value_var  = NULL,
+  drop_first = TRUE,
+  base_prefix = "",
+  ordering = NULL
+)
 }
 \arguments{
 \item{data}{a data.frame object}
