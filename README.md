@@ -58,7 +58,7 @@ waterfall(
   plot()
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="70%" />
 
 Plot a more advanced waterfall charts with multiple periods.
 
@@ -109,7 +109,7 @@ waterfall(
   plot()
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="70%" />
 
 You can make use of facetting with `by_var` arguments:
 
@@ -125,7 +125,7 @@ waterfall(
   plot()
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="70%" />
 
 Or flip the chart with flip = TRUE:
 
@@ -144,7 +144,7 @@ waterfall(
   )
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="70%" />
 
 Use can still adapt the chart with comomn ggplot2 API:
 
@@ -166,6 +166,6 @@ DTwf %>%
   ggtitle("Add this title here")
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="70%" />
 
 \`\`\`
