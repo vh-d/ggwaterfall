@@ -15,6 +15,19 @@ seq_along_named <- function(x){
 }
 
 
+# from VHtools
+diff_fill <- function(x, lag = 1L, differences = 1L, fill = NA) {
+  if (isTRUE(length(x) > lag*differences)) {
+    c(
+      rep(methods::as(fill, typeof(x)), lag*differences), # fill initial missing values resulting from diff while preserving original type
+      diff(x, lag = lag, differences = differences)
+    )
+  } else
+    return(rep(as(NA, typeof(x)), length(x)))
+}
+
+
+
 #' Compute waterfall data
 #' @param data a data.frame object
 #'
@@ -63,7 +76,7 @@ waterfall <- function(
 
   # compute differences
   # setkeyv(DT, c(by_var, detail_var, base_var))
-  DT[, value_diff := VHtools::diff_fill(get(value_var)), by = c(by_var, detail_var)]
+  DT[, value_diff := diff_fill(get(value_var)), by = c(by_var, detail_var)]
 
   if (is.null(ordering)) {
     ordering <- unique(DT[[detail_var]])
@@ -127,13 +140,14 @@ waterfall <- function(
 }
 
 
+#' @rdname waterfall_data
 #' @export
 waterfall_data <- waterfall
 
 
 
 #' Plot waterfall data
-#' @param wf_data a data from waterfall() / waterfall_data()
+#' @param x a data from waterfall() / waterfall_data()
 #'
 #' @param select apply a filter
 #' @param scales passed to ggplot2
@@ -144,31 +158,33 @@ waterfall_data <- waterfall
 #' @param ncol passed to ggplot2
 #' @param label_font_size passed to ggplot2
 #' @param color_palette (optional) manual color_palette
+#' @param ... ignored
 #'
 #' @rdname waterfall_plot
 #' @export
 plot.waterfall <- function(
-  wf_data,
+  x,
   select = TRUE,
   # scales = if (flip) "free_x" else "free_y",
   scales = "fixed",
   flip = FALSE,
   # units = 1,
   xlim = NULL,
-  ylim = c(min(wf_data$start, na.rm = TRUE), max(wf_data$end, na.rm = TRUE)*1.1),
+  ylim = c(min(x$start, na.rm = TRUE), max(x$end, na.rm = TRUE)*1.1),
   nrow = NULL,
   ncol = NULL,
   label_font_size = 3,
-  color_palette = NULL
+  color_palette = NULL,
+  ...
 ){
 
   sel_expr <- substitute(select)
 
-  by_var      <- attr(wf_data, "by_var")
-  base_var    <- attr(wf_data, "base_var")
-  detail_var  <- attr(wf_data, "detail_var")
+  by_var      <- attr(x, "by_var")
+  base_var    <- attr(x, "base_var")
+  detail_var  <- attr(x, "detail_var")
 
-  DT <- wf_data[eval(sel_expr)]
+  DT <- x[eval(sel_expr)]
 
   scale_table <- unique(DT[, c("ordcol", detail_var), with = FALSE])
   scale_vec        <- scale_table[[2]]
@@ -241,11 +257,12 @@ plot.waterfall <- function(
   return(g)
 }
 
+#' @rdname waterfall_plot
 #' @export
 waterfall_plot <- plot.waterfall
 
 
-
+#' color palette
 #' @export
 waterfall_colors <-
   c("base" = rgb(red = 155/255, green = 211/255, blue = 247/255),

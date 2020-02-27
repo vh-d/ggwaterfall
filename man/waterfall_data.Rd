@@ -2,11 +2,30 @@
 % Please edit documentation in R/waterfall.R
 \name{waterfall}
 \alias{waterfall}
+\alias{waterfall_data}
 \title{Compute waterfall data}
 \usage{
-waterfall(data, detail_var = NULL, base_var = NULL, by_var = NULL,
-  value_var = NULL, drop_first = TRUE, base_prefix = "",
-  ordering = NULL)
+waterfall(
+  data,
+  detail_var = NULL,
+  base_var = NULL,
+  by_var = NULL,
+  value_var = NULL,
+  drop_first = TRUE,
+  base_prefix = "",
+  ordering = NULL
+)
+
+waterfall_data(
+  data,
+  detail_var = NULL,
+  base_var = NULL,
+  by_var = NULL,
+  value_var = NULL,
+  drop_first = TRUE,
+  base_prefix = "",
+  ordering = NULL
+)
 }
 \arguments{
 \item{data}{a data.frame object}

@@ -2,15 +2,39 @@
 % Please edit documentation in R/waterfall.R
 \name{plot.waterfall}
 \alias{plot.waterfall}
+\alias{waterfall_plot}
 \title{Plot waterfall data}
 \usage{
-\method{plot}{waterfall}(wf_data, select = TRUE, scales = "fixed",
-  flip = FALSE, xlim = NULL, ylim = c(min(wf_data$start, na.rm =
-  TRUE), max(wf_data$end, na.rm = TRUE) * 1.1), nrow = NULL,
-  ncol = NULL, label_font_size = 3, color_palette = NULL)
+\method{plot}{waterfall}(
+  x,
+  select = TRUE,
+  scales = "fixed",
+  flip = FALSE,
+  xlim = NULL,
+  ylim = c(min(x$start, na.rm = TRUE), max(x$end, na.rm = TRUE) * 1.1),
+  nrow = NULL,
+  ncol = NULL,
+  label_font_size = 3,
+  color_palette = NULL,
+  ...
+)
+
+waterfall_plot(
+  x,
+  select = TRUE,
+  scales = "fixed",
+  flip = FALSE,
+  xlim = NULL,
+  ylim = c(min(x$start, na.rm = TRUE), max(x$end, na.rm = TRUE) * 1.1),
+  nrow = NULL,
+  ncol = NULL,
+  label_font_size = 3,
+  color_palette = NULL,
+  ...
+)
 }
 \arguments{
-\item{wf_data}{a data from waterfall() / waterfall_data()}
+\item{x}{a data from waterfall() / waterfall_data()}
 
 \item{select}{apply a filter}
 
@@ -29,6 +53,8 @@
 \item{label_font_size}{passed to ggplot2}
 
 \item{color_palette}{(optional) manual color_palette}
+
+\item{...}{ignored}
 }
 \description{
 Plot waterfall data
